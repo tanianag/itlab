@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScipt: Email and Password</title>
+</head>
+<body>
+	<main>
+		<form name='login' method="POST">
+	<table>
+		<tr>
+			<td><input name='email' type="text" placeholder="Enter Email"></td>
+		</tr>
+		<tr>
+			<td><input type="password" name="password" placeholder="Enter Password"></td>
+		</tr>
+		<tr>
+			<td><button type="submit">Submit</button></td>
+		</tr>
+	</table>
+		</form>
+	</main>
+	<script type="text/javascript">
+		(function() {
+			document.querySelector('form[name=login]').addEventListener('submit', function (event) {
+				const inputs = event.target.elements;
+				const email = inputs['email'].value;
+				const password = inputs['password'].value;
+				if (email.length === 0 || password.length === 0) {
+					alert('Form Missing Required Field');
+				} else if (! /[a-z0-9]+@[a-z]+\.[a-z]+/i.test(email)) {
+					alert('Invalid Email Address Given');
+				} else if (password.length < 6 || password.length > 13) {
+					alert('Password should be 6 to 13 characters long');
+				} else {
+					alert('Email: ' + email + '\nPassword: ' + password);
+				}
+				event.preventDefault();
+				return true;
+			});
+		})()
+	</script>
+</body>
+</html>
